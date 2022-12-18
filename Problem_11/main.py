@@ -28,7 +28,6 @@
 ## What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 import numpy
 
-VISITED = []
 LARGEST_PRODUCT = 0
 GRID = (
 	[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
@@ -80,22 +79,12 @@ def start_traverse(r_index, c_index):
 	)
 
 	if max(products) > LARGEST_PRODUCT:
-		print(f'idx: {r_index}, {c_index} products: {products}')
 		LARGEST_PRODUCT = max(products)
 
 def main():
-	exhausted = False
 	for r_index in range(len(GRID)):
 		for c_index in range(len(GRID[r_index])):
-			if (r_index+1) * (c_index+1) == 400:
-				exhausted = True
-				break
-			else:
-				start_traverse(r_index, c_index)
-
-
-		if exhausted:
-			break
+			start_traverse(r_index, c_index)
 
 	print(f'end: {LARGEST_PRODUCT}')
 
